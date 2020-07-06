@@ -42,7 +42,7 @@ fun Canvas.drawHexBouncyCircle(scale : Float, size : Float, paint : Paint) {
         val sf2j : Float = sf2.divideScale(j, balls)
         save()
         rotate(deg * j)
-        drawCircle(0f, size, initR + (uR) * sf2j.sinify(), paint)
+        drawCircle(0f, -size, initR + (uR) * sf2j.sinify(), paint)
         restore()
     }
     restore()
@@ -143,7 +143,6 @@ class HexCircleBouncyView(ctx : Context) : View(ctx) {
 
         fun draw(canvas : Canvas, paint : Paint) {
             canvas.drawHCBNode(i, state.scale, paint)
-            next?.draw(canvas, paint)
         }
 
         fun update(cb : (Float) -> Unit) {
@@ -169,12 +168,11 @@ class HexCircleBouncyView(ctx : Context) : View(ctx) {
 
     data class HexBouncyCircle(var i : Int) {
 
-        private val root : HCBNode = HCBNode(0)
-        private var curr : HCBNode = root
+        private var curr : HCBNode = HCBNode(0)
         private var dir : Int = 1
 
         fun draw(canvas : Canvas, paint : Paint) {
-            root.draw(canvas, paint)
+            curr.draw(canvas, paint)
         }
 
         fun update(cb : (Float) -> Unit) {
