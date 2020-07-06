@@ -20,3 +20,8 @@ val sizeFactor : Float = 2.9f
 val ballRFactor : Int = 5
 val ballSFactor : Int = 3
 val foreColor : Int = Color.parseColor("#4CAF50")
+
+fun Int.inverse() : Float = 1f / this
+fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
+fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
+fun Float.sinify() : Float = Math.sin(this * Math.PI).toFloat()
