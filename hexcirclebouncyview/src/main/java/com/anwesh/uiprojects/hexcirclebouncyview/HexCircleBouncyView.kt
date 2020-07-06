@@ -211,4 +211,12 @@ class HexCircleBouncyView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : HexCircleBouncyView {
+            val view : HexCircleBouncyView = HexCircleBouncyView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
